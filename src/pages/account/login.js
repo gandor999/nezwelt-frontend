@@ -28,8 +28,10 @@ export default function Login() {
     if (data) {
       const { token } = data;
 
-      Cookies.set("jwt", token);
-      router.push("/home");
+      Cookies.set("jwt", token, {
+        expires: new Date(new Date().getTime() + 60 * 60 * 1000),
+      });
+      router.push("/home/index");
     }
   };
 
