@@ -36,6 +36,36 @@ export default function Login() {
   return (
     <>
       <main>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label for="exampleInputEmail1" className="form-label">
+              Username
+            </label>
+            <input
+              type="username"
+              className="form-control"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label for="exampleInputPassword1" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="mb-3 form-check"></div>
+          <button type="submit" className="btn btn-primary">
+            Login
+          </button>
+        </form>
       </main>
     </>
   );
