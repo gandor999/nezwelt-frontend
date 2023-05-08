@@ -64,7 +64,7 @@ export default function Home() {
         <main>
           <h1>Territories</h1>
           <h3>Here are a list of territories:</h3>
-          <ul>{unflattenedTerritories.map((ter) => renderTerritories(ter))}</ul>
+          <ul>{unflattenedTerritories.map((t) => renderTerritories(t))}</ul>
         </main>
       ) : (
         <main>
