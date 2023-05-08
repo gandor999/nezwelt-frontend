@@ -37,14 +37,31 @@ export default function Home() {
     .map((t) => insertChildren(t, territories))
     .filter((t) => t.parent === null);
 
-  
+  const renderTerritories = (territory) => {
+    return (
+      <>
+        <li>
+          <span>{territory.name}</span>
+          <ul>
+            {territory.children.map((child) => {
+              return (
+                <>
+                  <li>{renderTerritories(child)}</li>
+                </>
+              );
+            })}
+          </ul>
+        </li>
+      </>
+    );
+  };
 
   return (
     <>
       <main>
         <h1>Territories</h1>
         <h3>Here are a list of territories:</h3>
-       
+        <ul>{unflattenedTerritories.map((ter) => renderTerritories(ter))}</ul>
       </main>
     </>
   );
