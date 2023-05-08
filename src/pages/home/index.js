@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     getTerritories();
-  }, []);
+  });
 
   const getTerritories = async () => {
     return await axios
@@ -20,7 +20,9 @@ export default function Home() {
       })
       .then((res) => setTerritories(res.data.territories))
       .catch((e) => {
-        if (e.response.status === 403) router.push("/account/login");
+        if (e.response.status === 403) {
+          router.push("/account/login");
+        }
       });
   };
 
@@ -58,11 +60,17 @@ export default function Home() {
 
   return (
     <>
-      <main>
-        <h1>Territories</h1>
-        <h3>Here are a list of territories:</h3>
-        <ul>{unflattenedTerritories.map((ter) => renderTerritories(ter))}</ul>
-      </main>
+      {Cookies.get("jwt") ? (
+        <main>
+          <h1>Territories</h1>
+          <h3>Here are a list of territories:</h3>
+          <ul>{unflattenedTerritories.map((ter) => renderTerritories(ter))}</ul>
+        </main>
+      ) : (
+        <main>
+          <h1>Redirecting to Login Page</h1>
+        </main>
+      )}
     </>
   );
 }
