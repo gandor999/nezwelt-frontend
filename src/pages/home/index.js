@@ -24,7 +24,18 @@ export default function Home() {
       });
   };
 
-  
+  const insertChildren = (territory, territories) => {
+    return {
+      ...territory,
+      children: territories
+        .filter((t) => t.parent === territory.id)
+        .map((child) => insertChildren(child, territories)),
+    };
+  };
+
+  const unflattenedTerritories = territories
+    .map((t) => insertChildren(t, territories))
+    .filter((t) => t.parent === null);
 
   
 
